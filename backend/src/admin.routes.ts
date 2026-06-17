@@ -52,7 +52,7 @@ export async function adminRoutes(app: FastifyInstance) {
       doctor: adminView({ ...repo.getDoctor(user.id)!, email: user.email }),
       message: "Invitación enviada al médico.",
     };
-    if (!isProd) res._demo_inviteUrl = link;
+    if (config.mailTransport !== "smtp") res._demo_inviteUrl = link;
     return reply.code(201).send(res);
   });
 
