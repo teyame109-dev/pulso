@@ -1,0 +1,31 @@
+{
+  "name": "pulso-backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "API de autenticación, perfil clínico y médicos de Pulso (telemedicina)",
+  "scripts": {
+    "dev": "node --no-warnings --experimental-sqlite --import tsx --watch src/server.ts",
+    "start": "node --no-warnings --experimental-sqlite --import tsx src/server.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fastify/helmet": "^12.0.1",
+    "@fastify/multipart": "^10.0.0",
+    "@fastify/rate-limit": "^10.1.1",
+    "@fastify/static": "^9.1.3",
+    "fastify": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.16",
+    "qrcode": "^1.5.4",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.9.0",
+    "@types/nodemailer": "^6.4.16",
+    "@types/qrcode": "^1.5.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

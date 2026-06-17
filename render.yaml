@@ -1,0 +1,28 @@
+# Despliegue de Pulso en Render como servicio único (Docker).
+services:
+  - type: web
+    name: pulso
+    runtime: docker
+    plan: starter              # 'starter' (de pago) permite disco persistente. 'free' funciona pero es efímero.
+    healthCheckPath: /health
+    envVars:
+      - key: SEED_DEMO
+        value: "true"          # siembra datos de demo. Pon "false" cuando ya no los necesites.
+      - key: ADMIN_EMAIL
+        value: admin@pulso.es
+      - key: ADMIN_PASSWORD
+        sync: false            # secreto: defínelo en el panel de Render
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: PHI_ENC_KEY
+        sync: false            # secreto: 64 caracteres hex (ver guía). NO lo pierdas: cifra los datos de salud.
+      - key: DB_FILE
+        value: /data/pulso.db
+      - key: UPLOAD_DIR
+        value: /data/uploads
+    disk:
+      name: pulso-data
+      mountPath: /data         # SQLite y documentos persisten aquí
+      sizeGB: 1
