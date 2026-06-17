@@ -45,7 +45,7 @@ export async function authRoutes(app: FastifyInstance) {
       user: { id: user.id, email: user.email, emailVerified: false },
       message: "Te hemos enviado un correo para verificar tu cuenta.",
     };
-    if (!isProd) body._demo_verifyUrl = link; // solo fuera de producción, para pruebas
+    if (config.mailTransport !== "smtp") body._demo_verifyUrl = link;
     return reply.code(201).send(body);
   });
 
